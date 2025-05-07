@@ -10,28 +10,32 @@ public:
         set<char> stringSetA(inputA.begin(), inputA.end());
         set<char> stringSetB(inputB.begin(), inputB.end());
 
-        int score = 0;
-        int totalCnt = 0;
-        int sameCnt = 0;
+        int sameCnt = getTheSameCharNumber(stringSetA, stringSetB);
+        int totalCnt = getTotalAlphaCount(stringSetA, stringSetB);
 
-        // sameCnt
-        sameCnt = getTheSameCharNumber(stringSetA, stringSetB);
-        
-        totalCnt = stringSetA.size() + stringSetB.size() - sameCnt;
-        if (totalCnt == sameCnt)
+        if (isAlltheSame(totalCnt, sameCnt))
             return MAX_ALPHABET_POINT;
 
         return sameCnt * 40 / totalCnt;
     }
 
+    int getTotalAlphaCount(std::set<char>& stringSetA, std::set<char>& stringSetB) const
+    {
+        int sameCnt = getTheSameCharNumber(stringSetA, stringSetB);
+        return static_cast<int>(stringSetA.size() + stringSetB.size() - sameCnt);
+    }
+
 private:
+    bool isAlltheSame(int totalCnt, int sameCnt) const
+    {
+        return totalCnt == sameCnt;
+    }
+
     int getTheSameCharNumber(const set<char>& setCharA, const set<char>& setCharB) const
     {
         int result = 0;
         for (char ch : setCharA) {
-            if (setCharB.count(ch)) {
-                ++result;
-            }
+            if (setCharB.count(ch)) ++result;
         }
         return result;
     }

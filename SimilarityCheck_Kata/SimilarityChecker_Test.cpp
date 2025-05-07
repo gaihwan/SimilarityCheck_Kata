@@ -35,14 +35,15 @@ TEST_F(SimilarityCheckerFixture, SimilarityCheckerTC3) {
     checkLength(0, "BCDEFG", "ABC");
 }
 
-TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC1) {
+TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC1_ZeroPoint) {
     checkAlpha(0, "XYZ", "ABC");
 }
 
-TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC2) {
+TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC2_AllTheSame) {
     checkAlpha(40, "AABBCC", "ABC");
 }
 
-TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC3) {
-    checkAlpha(40, "AABBCC", "ABC");
+TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC3_PartialPoint) {
+    checkAlpha(30, "ABC", "ABCQ");
+    checkAlpha(20, "QFQFQF", "F");
 }
