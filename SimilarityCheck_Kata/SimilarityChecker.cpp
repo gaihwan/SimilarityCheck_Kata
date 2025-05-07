@@ -13,8 +13,11 @@ public:
         int gab = inputA.length() - inputB.length();
 
         if (gab == 0) return MAX_POINT;
-        if ((lengthA >= lengthB * 2) || (lengthB >= lengthA * 2)) return 0;
+        if (is2TimesLonger(lengthA, lengthB)) return 0;
         if (gab > 0) return MAX_POINT - (gab * MAX_POINT) / lengthB;
         else return MAX_POINT + (gab * MAX_POINT) / lengthA;
+    }
+    bool is2TimesLonger(int lengthA, int lengthB) const {
+        return ((lengthA >= lengthB * 2) || (lengthB >= lengthA * 2));
     }
 };
