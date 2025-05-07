@@ -1,29 +1,33 @@
 #include "gmock/gmock.h"
 #include "SimilarityChecker.cpp"
 
-TEST(TS, TC1) {
+using namespace testing;
+
+class SimilarityCheckerFixture : public Test {
+public:
+    void checkLength(int expected, string inputA, string inputB) {
+        int actual = c.getLengthSimilarity(inputA, inputB);
+        EXPECT_EQ(expected, actual);
+    }
+
+private:
+    SimilarityChecker c;
+};
+
+TEST_F(SimilarityCheckerFixture, TC1) {
     SimilarityChecker c;
     EXPECT_EQ(1, 1);
 }
 
-TEST(TS, SimilarityCheckerTC1) {
-    SimilarityChecker c;
-    int expected = 40;
-    int actual = c.getLengthSimilarity("ABCD", "ABC");
-    EXPECT_EQ(expected, actual);
+TEST_F(SimilarityCheckerFixture, SimilarityCheckerTC1) {
+    checkLength(40, "ABCD", "ABC");
 }
 
-TEST(TS, SimilarityCheckerTC2) {
-    SimilarityChecker c;
-    int expected = 60;
-    int actual = c.getLengthSimilarity("BCD", "ABC");
-    EXPECT_EQ(expected, actual);
+TEST_F(SimilarityCheckerFixture, SimilarityCheckerTC2) {
+    checkLength(60, "BCD", "ABC");
 }
 
-TEST(TS, SimilarityCheckerTC3) {
-    SimilarityChecker c;
-    int expected = 0;
-    int actual = c.getLengthSimilarity("BCDEFG", "ABC");
-    EXPECT_EQ(expected, actual);
+TEST_F(SimilarityCheckerFixture, SimilarityCheckerTC3) {
+    checkLength(0, "BCDEFG", "ABC");
 }
 
