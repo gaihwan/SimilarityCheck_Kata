@@ -15,7 +15,6 @@ private:
 };
 
 TEST_F(SimilarityCheckerFixture, TC1) {
-    SimilarityChecker c;
     EXPECT_EQ(1, 1);
 }
 
