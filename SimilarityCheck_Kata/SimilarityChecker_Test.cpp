@@ -6,12 +6,17 @@ using namespace testing;
 class SimilarityCheckerFixture : public Test {
 public:
     void checkLength(int expected, string inputA, string inputB) {
-        int actual = c.getLengthSimilarity(inputA, inputB);
+        int actual = lsc.getLengthSimilarity(inputA, inputB);
+        EXPECT_EQ(expected, actual);
+    }
+    void checkAlpha(int expected, string inputA, string inputB) {
+        int actual = asc.getAlphabetSimilarity(inputA, inputB);
         EXPECT_EQ(expected, actual);
     }
 
 private:
-    SimilarityChecker c;
+    LengthSimilarityChecker lsc;
+    AlphabetSimilarityChecker asc;
 };
 
 TEST_F(SimilarityCheckerFixture, TC1) {
@@ -30,3 +35,14 @@ TEST_F(SimilarityCheckerFixture, SimilarityCheckerTC3) {
     checkLength(0, "BCDEFG", "ABC");
 }
 
+TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC1) {
+    checkAlpha(0, "XYZ", "ABC");
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC2) {
+    checkAlpha(40, "AABBCC", "ABC");
+}
+
+TEST_F(SimilarityCheckerFixture, AlphabetCheckerTC3) {
+    checkAlpha(40, "AABBCC", "ABC");
+}
